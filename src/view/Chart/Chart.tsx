@@ -1,6 +1,7 @@
 import { ResponsiveContainer, AreaChart, XAxis, YAxis, Tooltip, Area } from 'recharts'
 import styles from './Chart.module.scss'
-import { motion } from 'framer-motion'
+import { motion, useMotionValueEvent, useScroll } from 'framer-motion'
+import { useState } from 'react';
 
 const data = [
     {
@@ -33,6 +34,13 @@ const data = [
   ];
 
 export const Chart = () => {
+  const [scroll, setScroll] = useState(0)
+  const { scrollY } = useScroll()
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    setScroll(latest)
+  })
+
     return (
         <motion.div 
           className={styles.wrapper}
@@ -59,12 +67,12 @@ export const Chart = () => {
             <XAxis dataKey="name" tick={{ fill: '#fff' }} />
             <YAxis tickFormatter={(value) => `$${value}`} tick={{ fill: '#fff' }} />
             <Tooltip />
-            <Area
+            {scroll > 200 && <Area
               type="monotone" 
               dataKey="uv" 
               stroke="#901cfc" 
               fill="#8706dd" 
-            />
+            />}
           </AreaChart>
         </ResponsiveContainer>
         </motion.div>
