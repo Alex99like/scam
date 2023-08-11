@@ -1,0 +1,22 @@
+.wrapper {
+  height: 200px;
+  width: 100%;
+  z-index: 100;
+  padding: 5px;
+  margin-top: 30px;
+
+  .title {
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow: 1px 2px 0px #c23dfb;
+    strong {
+      font-size: 40px;
+      color: #fff;
+      text-shadow: 3px 3px 0px #cfa901;
+    }
+  }
+}
